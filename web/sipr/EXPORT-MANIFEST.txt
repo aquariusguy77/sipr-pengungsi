@@ -1,0 +1,50 @@
+SIPR Export Manifest
+
+Tujuan
+- Manifest ini menjelaskan isi tiap arsip pecahan dan urutan merge yang paling aman.
+
+Arsip Tersedia
+1. `sipr-docs-config.zip`
+   Isi:
+   - `README.txt`
+   - `INSTALLATION-CHECKLIST.txt`
+   - `DROP-IN-INTEGRATION-NOTES.txt`
+   - `ENV-PROFILE-PREVIEW.txt`
+   - `ENV-PROFILE-PRODUCTION.txt`
+   - `.env.example`
+   Kapan dipakai:
+   - dibaca lebih dulu sebelum merge file kode
+
+2. `sipr-app-core.zip`
+   Isi:
+   - folder `app/`
+   - folder `routes/`
+   - `bootstrap-middleware.stub.txt`
+   Kapan dipakai:
+   - setelah tim memahami mode auth, middleware, dan struktur service
+
+3. `sipr-database.zip`
+   Isi:
+   - folder `database/migrations`
+   - folder `database/seeders`
+   - folder `database/factories`
+   Kapan dipakai:
+   - setelah model `User` target siap menerima kolom `role`
+
+4. `sipr-views.zip`
+   Isi:
+   - seluruh `resources/views` SIPR
+   Kapan dipakai:
+   - setelah layout dasar dan route utama sudah di-merge
+
+Urutan Merge Aman
+1. Buka `sipr-docs-config.zip`
+2. Terapkan `.env` dan pilih profil preview atau production
+3. Merge `sipr-app-core.zip`
+4. Merge `sipr-database.zip`
+5. Jalankan migration dan seeder
+6. Merge `sipr-views.zip`
+7. Uji login, role, CRUD, dan menu
+
+Catatan
+- Jika ingin handoff Laravel tanpa aset preview tambahan, gunakan paket production cut.

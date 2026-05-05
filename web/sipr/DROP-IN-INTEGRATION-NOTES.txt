@@ -1,0 +1,77 @@
+Drop-In Integration Notes SIPR Rudenim Surabaya
+
+Tujuan
+- Dokumen ini membantu tim target menyalin paket SIPR ke project Laravel yang sudah ada tanpa menebak-nebak urutan file.
+
+Urutan Pemasangan yang Disarankan
+1. `app/`
+   Salin controller, middleware, model, policy, provider, dan service SIPR.
+   Fokus penting:
+   - `app/Http/Controllers`
+   - `app/Http/Middleware`
+   - `app/Services`
+   - `app/Providers/AuthServiceProvider.php`
+
+2. `database/`
+   Salin migration, seeder, dan factory.
+   Jalankan migration setelah memastikan tabel `users` target menerima kolom `role`.
+
+3. `resources/views/`
+   Salin layout, partial, dan view modul SIPR.
+   Struktur utama yang dipakai:
+   - `resources/views/layouts`
+   - `resources/views/partials`
+   - `resources/views/dashboard`
+   - `resources/views/refugees`
+   - `resources/views/placements`
+   - `resources/views/documents`
+   - `resources/views/history`
+   - `resources/views/reports`
+   - `resources/views/settings`
+   - `resources/views/auth`
+
+4. `routes/web.php`
+   Merge route SIPR ke file route target.
+   Pastikan grup SIPR tetap berada di balik middleware:
+   - `EnsureSiprAuthenticated`
+   - `EnsureSiprAbility`
+
+5. `.env`
+   Tambahkan variabel SIPR dan Firebase dari `.env.example`.
+   Saklar penting:
+   - `SIPR_DEMO_LOGIN_ENABLED`
+   - `SIPR_LARAVEL_AUTH_ENABLED`
+   - `SIPR_SAMPLE_DATA_ENABLED`
+   - `SIPR_FIREBASE_READ_ENABLED`
+
+Pemetaan Fungsi per Folder
+- `app/Http/Controllers`
+  Menangani alur halaman dan CRUD.
+- `app/Http/Middleware`
+  Menjaga login dan pembatasan akses role.
+- `app/Services`
+  Menjaga konfigurasi Firebase, mode demo, sample data, dan aggregator data tampilan.
+- `resources/views`
+  Menyediakan UI SIPR dengan menu sesuai spesifikasi.
+- `database/*`
+  Menyediakan fondasi data lokal untuk MVP dan pengujian awal.
+
+Rekomendasi Mode Setelah Dipasang
+- Tahap preview atau handoff awal:
+  `SIPR_DEMO_LOGIN_ENABLED=true`
+  `SIPR_LARAVEL_AUTH_ENABLED=false`
+  `SIPR_SAMPLE_DATA_ENABLED=true`
+- Tahap integrasi auth dan database:
+  `SIPR_DEMO_LOGIN_ENABLED=true`
+  `SIPR_LARAVEL_AUTH_ENABLED=true`
+  `SIPR_SAMPLE_DATA_ENABLED=true`
+- Tahap produksi internal:
+  `SIPR_DEMO_LOGIN_ENABLED=false`
+  `SIPR_LARAVEL_AUTH_ENABLED=true`
+  `SIPR_SAMPLE_DATA_ENABLED=false`
+  `SIPR_FIREBASE_READ_ENABLED=false` bila seluruh data sudah dipusatkan di database Laravel
+
+Catatan Merge Aman
+- Jangan timpa konfigurasi auth project target tanpa membaca isinya lebih dulu.
+- Jika target sudah punya `AuthServiceProvider`, gabungkan policy SIPR ke file yang ada.
+- Jika target sudah punya layout utama, view SIPR dapat dipindah bertahap ke layout project target.
