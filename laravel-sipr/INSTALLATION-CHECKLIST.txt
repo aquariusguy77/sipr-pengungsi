@@ -1,0 +1,37 @@
+Checklist Implementasi SIPR Rudenim Surabaya pada Project Laravel Target
+
+Persiapan Paket
+- [ ] Salin atau merge folder `app`, `database`, `resources/views`, dan `routes` dari paket ini ke project target.
+- [ ] Pastikan file `.env` target sudah disusun dari contoh `.env.example` paket.
+- [ ] Tentukan mode penyimpanan awal:
+      `FIREBASE_STORAGE_DISK=local` untuk mulai cepat dengan file lokal
+      `FIREBASE_STORAGE_DISK=firebase-rest` bila bearer token Firebase Storage sudah siap
+
+Database dan Model
+- [ ] Pastikan koneksi database target sudah aktif.
+- [ ] Pastikan model `App\Models\User` mempunyai kolom `role`.
+- [ ] Jalankan migration tambahan role bila project target belum memilikinya.
+- [ ] Jalankan `php artisan migrate --seed`.
+
+Auth dan Middleware
+- [ ] Pastikan `App\Providers\AuthServiceProvider` aktif.
+- [ ] Pastikan middleware `EnsureSiprAuthenticated` ikut dimuat project.
+- [ ] Pastikan middleware `EnsureSiprAbility` ikut dimuat project.
+- [ ] Bila ingin alias middleware yang rapi, ikuti panduan di `bootstrap-middleware.stub.txt`.
+- [ ] Pastikan route modul SIPR berada di balik middleware auth SIPR.
+- [ ] Tentukan apakah login demo tetap aktif atau dimatikan pada environment target.
+
+Uji Role Demo
+- [ ] Buka `/login`.
+- [ ] Masuk sebagai `admin` lalu cek Dashboard, Data Pengungsi, Penempatan, Dokumen, Laporan, dan Pengaturan.
+- [ ] Masuk sebagai `petugas` lalu pastikan bisa tambah/ubah pengungsi, penempatan, dan dokumen.
+- [ ] Masuk sebagai `supervisor` lalu pastikan bisa membuka Riwayat Perubahan dan Laporan.
+- [ ] Pastikan tombol hapus hanya terlihat untuk role Admin.
+- [ ] Pastikan Pengaturan hanya terlihat dan dapat diakses oleh Admin.
+
+Integrasi Lanjutan
+- [ ] Sambungkan query dummy ke Eloquent atau service backend final.
+- [ ] Ganti login demo ke auth Laravel penuh saat tabel pengguna siap.
+- [ ] Sambungkan upload dokumen ke storage final.
+- [ ] Sambungkan sinkronisasi Firebase RTDB dan log laporan bila diperlukan.
+- [ ] Saat masuk tahap produksi, ubah `SIPR_SAMPLE_DATA_ENABLED=false`.

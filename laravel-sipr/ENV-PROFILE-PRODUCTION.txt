@@ -1,0 +1,11 @@
+SIPR Production Profile
+
+Gunakan profil ini saat auth Laravel, database, dan alur operasional utama sudah aktif.
+
+SIPR_ACTIVE_ROLE=
+SIPR_LOGIN_MODE=auth
+SIPR_DEMO_LOGIN_ENABLED=false
+SIPR_LARAVEL_AUTH_ENABLED=true
+SIPR_SAMPLE_DATA_ENABLED=false
+SIPR_FIREBASE_READ_ENABLED=false
+FIREBASE_STORAGE_DISK=local
