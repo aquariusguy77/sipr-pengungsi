@@ -1,0 +1,46 @@
+SIPR Package Changelog
+
+Ringkasan Versi Utama
+
+v10
+- Fondasi paket Laravel awal dengan struktur `app`, `routes`, `database`, dan Blade views inti.
+
+v11
+- Arsip diperbarui untuk memastikan login demo, opsi storage, dan stub middleware ikut terbawa di paket.
+
+v12-with-preview
+- Menambahkan preview HTML ke dalam arsip gabungan agar tim bisa melihat referensi tampilan di luar Laravel.
+
+v13-auth-ui-checklist
+- Menambahkan middleware auth SIPR dasar.
+- Menyelaraskan tampilan UI dengan pembatasan role.
+- Menambahkan checklist implementasi untuk project target.
+
+v14-hybrid-auth-production-toggle
+- Menambahkan login hybrid: akun Laravel atau sesi demo.
+- Menambahkan saklar environment untuk demo login, auth Laravel, sample data, dan pembacaan Firebase.
+- Memisahkan perilaku preview dan produksi dengan lebih tegas.
+
+v14-lite
+- Varian paket Laravel-only yang lebih ringan saat arsip gabungan terlalu besar untuk distribusi.
+
+v15-production-cut
+- Paket Laravel handoff yang lebih formal dan fokus untuk integrasi project target.
+- Menambahkan manifest ekspor, profil environment preview/production, dan dokumen merge bertahap.
+- Menyesuaikan audit trail agar pelaksana diambil dari user aktif.
+
+Arsip Pecahan Saat Ini
+- `sipr-docs-config.zip`
+  untuk dokumentasi, checklist, profile environment, dan manifest
+- `sipr-app-core.zip`
+  untuk `app`, `routes`, dan middleware stub
+- `sipr-database.zip`
+  untuk migration, seeder, dan factory
+- `sipr-views.zip`
+  untuk Blade views
+
+Rekomendasi Pemakaian
+- Untuk handoff tim Laravel:
+  gunakan `v15-production-cut`
+- Untuk merge bertahap atau jaringan unduh yang sensitif:
+  gunakan arsip pecahan + `EXPORT-MANIFEST.txt`
